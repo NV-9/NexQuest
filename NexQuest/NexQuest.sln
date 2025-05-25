@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexQuest", "NexQuest.csproj", "{E87EDD46-48DD-4BD2-B024-E8619ABDCBB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexQuestGui", "..\NexQuestGui\NexQuestGui.csproj", "{1BBB4ED3-F0EB-468B-8123-30A62B34AB5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E87EDD46-48DD-4BD2-B024-E8619ABDCBB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E87EDD46-48DD-4BD2-B024-E8619ABDCBB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E87EDD46-48DD-4BD2-B024-E8619ABDCBB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E87EDD46-48DD-4BD2-B024-E8619ABDCBB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BBB4ED3-F0EB-468B-8123-30A62B34AB5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BBB4ED3-F0EB-468B-8123-30A62B34AB5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BBB4ED3-F0EB-468B-8123-30A62B34AB5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BBB4ED3-F0EB-468B-8123-30A62B34AB5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81A092E6-9F3B-4F00-93EA-A4DAB7C914D4}
+	EndGlobalSection
+EndGlobal
