@@ -1,0 +1,27 @@
+﻿<Window x:Class="NexQuestGui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NexQuestGui"
+        mc:Ignorable="d"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Title="NexQuest">
+    <ui:NavigationView x:Name="NavView"
+                       MenuItemsSource="{Binding MenuItems}"
+                       PaneTitle="NexQuest"
+                       IsBackButtonVisible="Collapsed"
+                       SelectionChanged="NavView_SelectionChanged">
+        <ui:NavigationView.MenuItemTemplate>
+            <DataTemplate>
+                <ui:NavigationViewItem Content="{Binding Content}"
+                                       Icon="{Binding Icon}"
+                                       Tag="{Binding Tag}" />
+            </DataTemplate>
+        </ui:NavigationView.MenuItemTemplate>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+    </ui:NavigationView>
+</Window>
