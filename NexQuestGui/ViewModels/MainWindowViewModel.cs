@@ -11,7 +11,7 @@ public class MainWindowViewModel
         MenuItems =
         [
             new NavigationItem { Content = "Dashboard", Tag = "Dashboard", Icon = Symbol.Home },
-  
+            
         ];
     }
 }

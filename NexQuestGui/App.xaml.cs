@@ -52,5 +52,6 @@ public partial class App : Application
         services.AddScoped<Dashboard>();
 
         services.AddScoped<MainWindowViewModel>();
+        services.AddScoped<DashboardViewModel>();
     }
 }

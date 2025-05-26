@@ -5,13 +5,77 @@
       xmlns:ui="http://schemas.modernwpf.com/2019"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NexQuestGui.Views"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" >
-    <Grid Background="White">
+    <ScrollViewer Background="White">
         <ui:SimpleStackPanel Margin="12" Spacing="24">
-            <TextBlock Text="Dashboard" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Center"/>
+            <TextBlock Text="Dashboard" 
+                       Style="{StaticResource HeaderTextBlockStyle}" 
+                       HorizontalAlignment="Center"/>
+            <ui:SimpleStackPanel Orientation="Horizontal" 
+                                 HorizontalAlignment="Center" 
+                                 Spacing="12">
+                <Button Content="Quests" 
+                        Style="{StaticResource AccentButtonStyle}" />
+                <Button Content="Calendar" 
+                        Style="{StaticResource AccentButtonStyle}" />
+                <Button Content="Settings" 
+                        Style="{StaticResource AccentButtonStyle}" />
+            </ui:SimpleStackPanel>
 
-            <Button Content="I am a button" Style="{StaticResource AccentButtonStyle}"/>
-            <Button Content="I am an accent button" Style="{StaticResource AccentButtonStyle}" />
+            <ui:ProgressBar/>
+
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0"
+                        Margin="12"
+                        Padding="12"
+                        CornerRadius="12"
+                        Background="{DynamicResource CardBackgroundBrush}"
+                        Effect="{DynamicResource ControlShadow}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Quest Completion"
+                                   FontWeight="SemiBold"
+                                   FontSize="16"
+                                   Margin="0,0,0,12"
+                                   HorizontalAlignment="Center"/>
+                        <lvc:PieChart Grid.Row="1"
+                                      LegendLocation="Bottom"
+                                      Hoverable="True"
+                                      Series="{Binding PieSeries}"
+                                      DataTooltip="{x:Null}"
+                                      Height="300" />
+                    </Grid> 
+                </Border>
+
+
+                <Border Grid.Column="1"
+                        Margin="12"
+                        Padding="12"
+                        CornerRadius="12"
+                        Background="{DynamicResource CardBackgroundBrush}"
+                        Effect="{DynamicResource ControlShadow}">
+                    <StackPanel>
+                        <TextBlock Text="Weekly Activity"
+                                   FontWeight="SemiBold"
+                                   FontSize="16"
+                                   Margin="0,0,0,12"
+                                   HorizontalAlignment="Center"/>
+                        <lvc:CartesianChart Series="{Binding BarSeries}"
+                                            AxisX="{Binding XAxes}"
+                                            AxisY="{Binding YAxes}"
+                                            Height="300" />
+                    </StackPanel>
+                </Border>
+            </Grid>
         </ui:SimpleStackPanel>
-    </Grid>
+    </ScrollViewer>
 </Page>

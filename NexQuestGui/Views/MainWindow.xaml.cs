@@ -16,6 +16,8 @@ namespace NexQuestGui
 
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+            if (args?.SelectedItemContainer is null) return;
+
             if (args.SelectedItemContainer is NavigationViewItem selectedItem)
             {
                 var tag = selectedItem.Tag?.ToString();
@@ -23,7 +25,7 @@ namespace NexQuestGui
                 switch (tag)
                 {
                     case "Dashboard":
-                        MainFrame.Navigate(new Dashboard());
+                        MainFrame.Navigate("Dashboard");
                         break;
                     //case "Quests":
                     //    MainFrame.Navigate(new QuestsPage());
