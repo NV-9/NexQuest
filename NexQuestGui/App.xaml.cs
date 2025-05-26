@@ -17,7 +17,7 @@ public partial class App : Application
              .ConfigureAppConfiguration((context, config) =>
              {
                  var path = Directory.GetCurrentDirectory();
-                 config.SetBasePath(Directory.GetCurrentDirectory());
+                 config.SetBasePath(path);
                  config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
              })
             .ConfigureServices((context, services) =>
