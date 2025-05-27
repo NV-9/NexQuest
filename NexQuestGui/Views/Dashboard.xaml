@@ -56,7 +56,6 @@
                     </Grid> 
                 </Border>
 
-
                 <Border Grid.Column="1"
                         Margin="12"
                         Padding="12"

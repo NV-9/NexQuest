@@ -1,8 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-using NexQuest.Models;
-using System;
-using System.Threading.Tasks;
+﻿using NexQuest.Models;
 
 namespace NexQuest.Services;
 public interface IUserService

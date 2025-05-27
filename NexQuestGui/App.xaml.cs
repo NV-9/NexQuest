@@ -9,6 +9,7 @@ using NexQuest.Services;
 using NexQuestGui.Views;
 using System.Windows.Navigation;
 using NexQuestGui.ViewModels;
+using System.Windows.Controls;
 
 namespace NexQuestGui;
 public partial class App : Application
@@ -50,8 +51,25 @@ public partial class App : Application
 
         services.AddScoped<MainWindow>();
         services.AddScoped<Dashboard>();
+        services.AddScoped<QuestList>();
 
         services.AddScoped<MainWindowViewModel>();
         services.AddScoped<DashboardViewModel>();
+        services.AddScoped<QuestListViewModel>();
     }
+
+    public static Dictionary<string, Type> PageMap { get; } = new() {
+        { "Dashboard", typeof(Dashboard) },
+        { "Quests", typeof(QuestList) },
+    };
+
+
+    public static Page? GetPageByName(string name)
+    {
+        if (AppHost?.Services is null || !PageMap.TryGetValue(name, out var type))
+            return null;
+
+        return AppHost.Services.GetService(type) as Page;
+    }
+
 }

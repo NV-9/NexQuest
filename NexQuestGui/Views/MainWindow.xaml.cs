@@ -1,40 +1,29 @@
 ﻿using ModernWpf.Controls;
 using NexQuestGui.ViewModels;
-using NexQuestGui.Views;
-using System.Configuration;
 using System.Windows;
 
-namespace NexQuestGui
+namespace NexQuestGui;
+public partial class MainWindow : Window
 {
-    public partial class MainWindow : Window
+    public MainWindow(MainWindowViewModel viewModel)
     {
-        public MainWindow(MainWindowViewModel viewModel)
-        {
-            InitializeComponent();
-            DataContext = viewModel;
-        }
+        InitializeComponent();
+        DataContext = viewModel;
+    }
 
-        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-        {
-            if (args?.SelectedItemContainer is null) return;
+    private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+    {
+        if (args?.SelectedItemContainer is not NavigationViewItem selectedItem)
+            return;
 
-            if (args.SelectedItemContainer is NavigationViewItem selectedItem)
-            {
-                var tag = selectedItem.Tag?.ToString();
-
-                switch (tag)
-                {
-                    case "Dashboard":
-                        MainFrame.Navigate("Dashboard");
-                        break;
-                    //case "Quests":
-                    //    MainFrame.Navigate(new QuestsPage());
-                    //    break;
-                    //case "Settings":
-                    //    MainFrame.Navigate(new SettingsPage());
-                    //    break;
-                }
-            }
-        }
+        var tag = selectedItem.Tag?.ToString();
+        if (string.IsNullOrEmpty(tag))
+            return;
+        
+        var page = App.GetPageByName(tag);
+        if (page is null)
+            return;
+        
+        MainFrame.Navigate(page);
     }
 }
