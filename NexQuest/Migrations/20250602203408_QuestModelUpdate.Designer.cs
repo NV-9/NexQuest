@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NexQuest.Database;
 
@@ -11,9 +12,11 @@ using NexQuest.Database;
 namespace NexQuest.Migrations
 {
     [DbContext(typeof(NexQuestDbContext))]
-    partial class NexQuestDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250602203408_QuestModelUpdate")]
+    partial class QuestModelUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

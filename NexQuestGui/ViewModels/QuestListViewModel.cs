@@ -1,24 +1,84 @@
 ﻿using NexQuest.Models;
-using System;
-using System.Collections.Generic;
+using NexQuest.Services;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace NexQuestGui.ViewModels;
-
-public class QuestListViewModel
+public class QuestListViewModel : INotifyPropertyChanged
 {
-    public ObservableCollection<Quest> Quests { get; set; }
+    private readonly IQuestService _questService;
+    private bool _editModeActive;
+    private string _editModeText = "Edit Mode: Off";
 
-    public QuestListViewModel()
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public ObservableCollection<Quest> Quests { get; set; }
+    public bool EditModeActive
     {
-        Quests =
-        [
-            new Quest("Find the Sword", "Retrieve the legendary blade from the cave.", type: QuestType.MainQuest),
-            new Quest("Rescue the Princess", "Save the princess from the tower.", type: QuestType.MainQuest),
-            new Quest("Defeat the Dragon", "Slay the dragon in the eastern mountains.", type: QuestType.SideQuest)
-        ];
+        get => _editModeActive;
+        set
+        {
+            if (_editModeActive != value)
+            {
+                _editModeActive = value;
+                OnPropertyChanged();
+            }
+        }
     }
+
+    public string EditModeText
+    {
+        get => _editModeText;
+        set
+        {
+            if (_editModeText != value)
+            {
+                _editModeText = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+
+    protected void OnPropertyChanged([CallerMemberName] string? name = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    }
+
+    public QuestListViewModel(IQuestService questService)
+    {
+        _questService = questService;
+        Quests = [];
+        EditModeActive = false;
+        EditModeText = "Edit Mode: Off";
+    }
+
+    public async void OnViewModelLoaded(object sender, RoutedEventArgs e)
+    {
+        Quests.Clear();
+        var quests = await _questService.GetAllQuestsAsync();
+        foreach (var quest in quests)
+        {
+            Quests.Add(quest);
+        }
+    }
+
+    public void ToggleEditMode()
+    {
+        switch (EditModeActive)
+        {
+            case true:
+                EditModeActive = false;
+                EditModeText = "Edit Mode: Off";
+                break;
+            case false:
+                EditModeActive = true;
+                EditModeText = "Edit Mode: On";
+                break;
+        }
+    }
+
+    
 }

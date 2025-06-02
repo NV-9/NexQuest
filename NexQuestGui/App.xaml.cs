@@ -47,6 +47,7 @@ public partial class App : Application
             options.UseSqlServer(configuration.GetConnectionString("Default")));
 
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IQuestService, QuestService>();
         services.AddSingleton<NavigationService>();
 
         services.AddScoped<MainWindow>();
